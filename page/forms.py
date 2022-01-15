@@ -13,4 +13,5 @@ class Reviewsform(forms.ModelForm):
         # specify fields to be used
         fields = ['reviewsname','reviewstext','reviewsinstagram']
         
-        labels = {'reviewsname':'Фио','reviewstext':'Ваш отзыв','reviewsinstagram':'Ваш инстаграм'}
+        labels = {'reviewsname':'','reviewstext':'','reviewsinstagram':''}
+        help_texts = {'reviewsname':'Фио','reviewstext':'Ваш отзыв','reviewsinstagram':'Ваш инстаграм'}

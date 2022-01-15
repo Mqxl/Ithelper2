@@ -284,7 +284,20 @@ a.white {
 	font-size: 0.75rem;
 	font-weight: 700;
 }
-
+input[type = "text"]{
+	display: block; /* needed for proper display of the label in Firefox, IE, Edge */
+	width: 100%;
+	padding-top: 1.0625rem;
+	padding-bottom: 0.0625rem;
+	padding-left: 1.25rem;
+	border: 1px solid #c4d8dc;
+	border-radius: 0.25rem;
+	background-color: #fff;
+	color: #555;
+	font: 400 0.875rem/1.875rem "Open Sans", sans-serif;
+	transition: all 0.2s;
+	-webkit-appearance: none; /* removes inner shadow on form inputs on ios safari */
+}
 .form-control-input,
 .form-control-select {
 	display: block; /* needed for proper display of the label in Firefox, IE, Edge */
@@ -618,7 +631,7 @@ input[type='checkbox'] {
 	width: 1rem;
 	height: 1rem;
 	border-radius: 100%;
-	background-color: #5f4dee;
+	background-color: #bd845e;
 	-webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
 	animation: sk-bouncedelay 1.4s infinite ease-in-out both;
 }
@@ -819,7 +832,7 @@ input[type='checkbox'] {
 	margin-left: 0.5rem;
 	border-color: #f3f7fd;
 	background-color: #f3f7fd;
-	color: #5f4dee;
+	color: #bd845e;
 }
 
 .header .btn-solid-lg:hover {

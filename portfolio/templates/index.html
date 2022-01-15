@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Tivo is a HTML landing page template built with Bootstrap to help you crate engaging presentations for SaaS apps and convert visitors into users.">
-    <meta name="author" content="Inovatik">
+    <meta name="description" content="Ithelper ваш личный помощник.">
+    <meta name="author" content="Selimzhan">
 
     <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
-	<meta property="og:site_name" content="" /> <!-- website name -->
+	<meta property="og:site_name" content="Itherlper" /> <!-- website name -->
 	<meta property="og:site" content="" /> <!-- website link -->
 	<meta property="og:title" content=""/> <!-- title shown in the actual shared post -->
 	<meta property="og:description" content="" /> <!-- description shown in the actual shared post -->
@@ -30,6 +30,8 @@
 	<link href="{%static 'css/styles.css'%}" rel="stylesheet">
   <script src="{%static 'js/three.js'%}"></script>
   <script src="{%static 'js/GLTFLoader.js'%}"></script>
+ 
+  
 	
 	<!-- Favicon  -->
     <link rel="icon" href="{%static 'images/ic.ico'%}">
@@ -153,7 +155,7 @@
                     <!-- Card -->
                     <div class="card">
                         <div class="card-image">
-                            <img class="img-fluid" src="{%static 'images/description-1.png'%}" alt="alternative">
+                            <img class="img-fluid" src="{%static 'images/description-1.webp'%}" alt="alternative">
                         </div>
                         <div class="card-body">
                             <h4 class="card-title">Универсальность</h4>
@@ -249,28 +251,30 @@
                         <h2>Тут вы можете напрямую отправить свой вопрос или заявку</h2>
 
                         <!-- Newsletter Form -->
-                        <form id="newsletterForm" data-toggle="validator" data-focus="false">
+                        <form  action="" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
                             <div class="form-group">
-                                <input type="email" class="form-control-input" id="nemail" required>
+                                <input type="email" class="form-control-input" id="nemail" required name="email">
                                 <label class="label-control" for="nemail">Почта</label>
                                 <div class="help-block with-errors"></div>
                                 
                                 
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control-input" id="nemail" required>
+                                <input type="text" class="form-control-input" id="nemail" required name="question">
                                 <label class="label-control" for="nemail">Вопрос или заявка</label>
                                 <div class="help-block with-errors"></div>
                                 
                                 
                             </div>
                             
+                            
                             <div class="form-group checkbox">
                                 <input type="checkbox" id="nterms" value="Agreed-to-Terms" required>Я согласен с обработкой данных</a> 
                                 <div class="help-block with-errors"></div>
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="form-control-submit-button">Отправить</button>
+                                <input type="submit" class="form-control-submit-button" value="Отправить"></input>
                             </div>
                             <div class="form-message">
                                 <div id="nmsgSubmit" class="h3 text-center hidden"></div>
@@ -436,21 +440,36 @@
             </div> <!-- end of row -->
         </div> <!-- end of container -->
     </div> <!-- end of slider-2 -->
-    <div class="container" style="margin: auto;padding: auto;">
+    <div class="form" id="details">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-container">
+                        <div class="above-heading">Оставить заявку</div>
+                        <h2>Тут вы можете напрямую отправить свой вопрос или заявку</h2>
     
-    
-    <form method="POST" enctype="multipart/form-data" style="margin: auto;padding: auto;">
- 
-        <!-- Security token -->
+        <form  method="POST" enctype="multipart/form-data" >
+            
+            <div class="form-group">
         {% csrf_token %}
      
-        <!-- Using the formset -->
+        
         {{ form.as_p }}
+    </div>
+    <div class="form-group">
+
          
         <input type="submit" value="Отправить" class="btn-solid-reg">
+            </div>
     </form>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
     
-</div>
+    
+    
     <!-- end of testimonials -->
     
 
@@ -505,8 +524,8 @@
     <script src="{%static 'js/jquery.magnific-popup.js'%}"></script> <!-- Magnific Popup for lightboxes -->
     <script src="{%static 'js/validator.min.js'%}"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
     <script src="{%static 'js/scripts.js'%}"></script> <!-- Custom scripts -->
-    <script type="module">
-     
+    <script>
+    
       
       let scene,camera,renderer,hlight,directionalLight,light,light2,light3,light4,model,clock,mixer,background,mesh,scene3d,backg
       
@@ -524,10 +543,11 @@
         camera.position.x = 1.5
         camera.position.y = 2.5
         function onWindowResize() {
-    camera.aspect = contenedor.clientWidth / contenedor.clientHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(contenedor.clientWidth, contenedor.clientHeight);
-}
+            camera.aspect = contenedor.clientWidth / contenedor.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(contenedor.clientWidth, contenedor.clientHeight);
+        }
+       
         
         
         
@@ -562,6 +582,7 @@
         model = gltf.scene;
         model.rotation.y = 34.6
         camera.lookAt(model)
+
            
         
         
@@ -572,7 +593,11 @@
                 mixer.clipAction( clip ).play();
             });
         
+        model.position.y = -1
+        
+        model.scale.set(1.5,1.5,1,5)
         scene.add(model);
+        
 
         
         
@@ -600,20 +625,26 @@
         
          
         }*/
-        
-      
+          
       function animate() {
+        clock.startTime = 0.008
         
-        var delta = clock.getDelta();
-        if ( mixer ) mixer.update( delta );
+        var delta = clock.startTime;
+        if (mixer) mixer.update( delta );
+        
+        
+        
+        
+        
         
         renderer.render(scene,camera);
         requestAnimationFrame(animate);
       }
+    
       
       init()
       animate();
-      
+     
       
     </script>
 </body>

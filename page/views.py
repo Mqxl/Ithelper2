@@ -15,7 +15,7 @@ def index(request):
     reviews = Reviews.objects.filter(available = True)
     
  
-    # add the dictionary during initialization
+    
 
     form = Reviewsform(request.POST or None)
     if form.is_valid():
@@ -23,11 +23,12 @@ def index(request):
         return render(request,'return.html')
          
     if request.method == 'POST':
-            if request.POST.get('email')  and request.POST.get('question') :
-                post=Question()
-                post.email= request.POST.get('email')
-                
-                post.questiontext = request.POST.get('question')
+        if request.POST.get('email')  and request.POST.get('question') :
+            post=Question()
+            post.email= request.POST.get('email')
+            post.questiontext = request.POST.get('question')
+            post.save()
+            return render(request,'return.html')
  
     return render(request,'index.html',{'projects':projects,'pricing':pricing,'reviews':reviews,'form':form} )   
    

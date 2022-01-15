@@ -33,8 +33,14 @@ class Reviews(models.Model):
     reviewsinstagram = models.CharField(max_length=400, db_index=True)
     
     available = models.BooleanField(default=False)
+    def __str__(self):
+        return self.reviewsname
 
 class Question(models.Model):
     email = models.EmailField()
     questiontext = models.CharField(max_length=600)
+    def __str__(self):
+        return self.email
+
+
 
