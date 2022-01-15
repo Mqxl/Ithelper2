@@ -18,14 +18,17 @@ def index(request):
     # add the dictionary during initialization
 
     form = Reviewsform(request.POST or None)
-    
     if form.is_valid():
         form.save()
         return render(request,'return.html')
          
-    form = form
-
-    
+    if request.method == 'POST':
+            if request.POST.get('email')  and request.POST.get('question') :
+                post=Question()
+                post.email= request.POST.get('email')
+                
+                post.questiontext = request.POST.get('question')
+ 
     return render(request,'index.html',{'projects':projects,'pricing':pricing,'reviews':reviews,'form':form} )   
    
 def project_detail(request, id):
